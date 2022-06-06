@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "T_GCO_FUNC_PORTARIA")
-@SequenceGenerator(name = "funcionario", sequenceName = "SQ_TB_FUNCIONARIO", allocationSize = 1)
+@SequenceGenerator(name = "funcionario", sequenceName = "SQ_T_GCO_FUNCIONARIO", allocationSize = 1)
 public class FuncPortaria implements Serializable {
 
     private static final long serialVersionUID = 1L;

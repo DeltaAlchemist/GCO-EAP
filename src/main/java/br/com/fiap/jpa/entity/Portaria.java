@@ -7,7 +7,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "T_GCO_PORTARIA")
-@SequenceGenerator(name = "portaria", sequenceName = "SQ_TB_PORTARIA", allocationSize = 1)
+@SequenceGenerator(name = "portaria", sequenceName = "SQ_T_GCO_PORTARIA", allocationSize = 1)
 public class Portaria implements Serializable {
 
     private static final long serialVersionUID = -4342056606534756998L;
@@ -43,7 +43,7 @@ public class Portaria implements Serializable {
     @Column(name = "dt_termino")
     private LocalDate dataTermino;
 
-    @OneToOne(optional = false)
+    @ManyToOne
     @JoinColumn(name = "condominio_id")
     private Condominio condominio;
 
@@ -55,6 +55,10 @@ public class Portaria implements Serializable {
 
     @Column(name = "dt_atualizacao")
     private LocalDateTime dataAtualizacao;
+
+    public Condominio getCondominio() {
+        return condominio;
+    }
 
     /* Getters and Setters */
 
@@ -116,5 +120,16 @@ public class Portaria implements Serializable {
 
     public void setDataAtualizacao(LocalDateTime dataAtualizacao) {
         this.dataAtualizacao = dataAtualizacao;
+    }
+
+    @Override
+    public String toString() {
+        return "Portaria{" +
+                "numero=" + numero +
+                ", nome='" + nome + '\'' +
+                ", dataInicio=" + dataInicio +
+                ", dataTermino=" + dataTermino +
+                ", condominio=" + condominio +
+                '}';
     }
 }

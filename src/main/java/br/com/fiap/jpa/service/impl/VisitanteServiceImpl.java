@@ -4,6 +4,7 @@ import br.com.fiap.jpa.dao.impl.VisitanteDAOImpl;
 import br.com.fiap.jpa.entity.Visitante;
 import br.com.fiap.jpa.service.GenericService;
 
+import java.time.LocalDate;
 import java.util.List;
 
 public class VisitanteServiceImpl extends GenericService<Visitante, Long> {
@@ -83,6 +84,20 @@ public class VisitanteServiceImpl extends GenericService<Visitante, Long> {
         try {
             visitantes = visitanteDAO.listar(getEntityManager());
         } catch (Exception e) {
+        } finally {
+            closeEntityManager();
+        }
+
+        return visitantes;
+    }
+
+    public List<Visitante> pesquisar(String nome, String cpf, LocalDate dataCadastro) {
+        List<Visitante> visitantes = null;
+
+        try {
+            visitantes = visitanteDAO.pesquisar(nome, cpf, dataCadastro, getEntityManager());
+        } catch (Exception e) {
+            e.printStackTrace();
         } finally {
             closeEntityManager();
         }

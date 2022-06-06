@@ -2,13 +2,12 @@ package br.com.fiap.jpa.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
-import java.util.Set;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "T_GCO_MOVIMENTACAO_PORTARIA")
-@SequenceGenerator(name = "movimentacao", sequenceName = "SQ_TB_MOVIMENTACAO", allocationSize = 1)
+@SequenceGenerator(name = "movimentacao", sequenceName = "SQ_T_GCO_MOVIMENTACAO", allocationSize = 1)
 public class Movimentacao implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -33,15 +32,15 @@ public class Movimentacao implements Serializable {
     @Column(name = "dt_movimentacao")
     private LocalDateTime dataMovimentacao;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "portaria_id")
     private Portaria portaria;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "visitante_id")
     private Visitante visitante;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.PERSIST)
     @JoinColumn(name = "funcionario_id")
     private FuncPortaria funcionario;
 
@@ -81,4 +80,14 @@ public class Movimentacao implements Serializable {
         this.dataMovimentacao = dataMovimentacao;
     }
 
+    @Override
+    public String toString() {
+        return "Movimentacao{" +
+                "movimentacao='" + movimentacao + '\'' +
+                ", dataMovimentacao=" + dataMovimentacao +
+                ", portaria=" + portaria +
+                ", visitante=" + visitante +
+                ", funcionario=" + funcionario +
+                '}';
+    }
 }

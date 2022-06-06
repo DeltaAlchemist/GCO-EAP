@@ -12,7 +12,7 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "T_GCO_VISITANTE")
-@SequenceGenerator(name = "visitante", sequenceName = "SQ_TB_VISITANTE", allocationSize = 1)
+@SequenceGenerator(name = "id_visitante", sequenceName = "SQ_T_GCO_VISITANTE", allocationSize = 1)
 public class Visitante implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -32,7 +32,7 @@ public class Visitante implements Serializable {
     }
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "visitante")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "id_visitante")
     private Long id;
 
     @Column(name = "nm_visitante", length = 25, nullable = false)
@@ -61,6 +61,10 @@ public class Visitante implements Serializable {
 
     public Set<Movimentacao> getMovimentacao() {
         return movimentacao;
+    }
+
+    public void setMovimentacao(Set<Movimentacao> movimentacao) {
+        this.movimentacao = movimentacao;
     }
 
     public Long getId() {

@@ -89,4 +89,17 @@ public class MovimentacaoServiceImpl extends GenericService<Movimentacao, Long> 
 
         return movimentacao;
     }
+
+    public List<Movimentacao> listarPorTipo(String tipo) {
+        List<Movimentacao> movimentacao = null;
+
+        try {
+            movimentacao = movimentacaoDAO.listarPorTipo(tipo, getEntityManager());
+        } catch (Exception e) {
+        } finally {
+            closeEntityManager();
+        }
+
+        return movimentacao;
+    }
 }

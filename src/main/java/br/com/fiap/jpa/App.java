@@ -32,8 +32,8 @@ public class App {
         portariaService.inserir(portaria1);
         portariaService.inserir(portaria2);
 
-        Visitante visitante1 = visitanteService.obter(1L);
-        Visitante visitante2 = visitanteService.obter(2L);
+        Visitante visitante1 = new Visitante("Marcos", "4567897821", "389745678", LocalDate.of(1988, 1, 10));
+        Visitante visitante2 = new Visitante("Flavio", "4561897821", "289745678", LocalDate.of(1989, 1, 10));
 
         FuncPortaria funcionario1 = funcionarioService.obter(1L);
         FuncPortaria funcionario2 = funcionarioService.obter(2L);
@@ -46,14 +46,13 @@ public class App {
         movimentacaoService.inserir(movimentacao2);
         movimentacaoService.inserir(movimentacao3);
 
-        /*
-        movimentacaoService.listarTipo("E").forEach(System.out::println);
-        movimentacaoService.listarTipo("S").forEach(System.out::println);
+        portariaService.listar().forEach(System.out::println);
+
+        movimentacaoService.listarPorTipo("E").forEach(System.out::println);
+        movimentacaoService.listarPorTipo("S").forEach(System.out::println);
 
         visitanteService.pesquisar("j", null, null).forEach(System.out::println);
         visitanteService.pesquisar("j", "111.111.111-11", null).forEach(System.out::println);
-        */
-
 
     }
 }

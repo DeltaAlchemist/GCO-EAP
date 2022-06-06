@@ -4,12 +4,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Set;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "T_GCO_CONDOMINIO")
-@SequenceGenerator(name = "condominio", sequenceName = "SQ_TB_CONDOMINIO", allocationSize = 1)
+@SequenceGenerator(name = "condominio", sequenceName = "SQ_T_GCO_CONDOMINIO", allocationSize = 1)
 public class Condominio implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -44,9 +45,8 @@ public class Condominio implements Serializable {
     @Column(name = "dt_fundacao")
     private LocalDate dataFundacao;
 
-    @OneToOne(mappedBy = "condominio", cascade = CascadeType.ALL)
-    @PrimaryKeyJoinColumn
-    private Portaria portaria;
+    @OneToMany(mappedBy = "condominio")
+    private Set<Portaria> portarias;
 
     @Column(name = "st_ativo")
     private Boolean ativo;
@@ -57,6 +57,14 @@ public class Condominio implements Serializable {
     @Column(name = "dt_atualizacao")
     private LocalDateTime dataAtualizacao;
 
+
+    public Set<Portaria> getPortarias() {
+        return portarias;
+    }
+
+    public void setPortarias(Set<Portaria> portarias) {
+        this.portarias = portarias;
+    }
 
     public Long getId() {
         return id;
